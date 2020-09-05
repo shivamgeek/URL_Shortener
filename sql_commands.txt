@@ -16,7 +16,7 @@ id int not null auto_increment,
 full_url varchar(45) default null,
 short_url varchar(45) default null unique,
 user_id int not null,
-expiration_data datetime default null,
+expiration_date datetime default null,
 primary key (id)
 );
 
