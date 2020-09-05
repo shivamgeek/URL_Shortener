@@ -14,10 +14,20 @@
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
+  
+  <servlet>
+  	<servlet-name>TestDbServlet</servlet-name>
+  	<servlet-class>com.shivam.testDB.TestDbServlet</servlet-class>
+  </servlet>
    
   <servlet-mapping>
     <servlet-name>FrontController</servlet-name>
     <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  
+    <servlet-mapping>
+    <servlet-name>TestDbServlet</servlet-name>
+    <url-pattern>/TestDbServlet</url-pattern>
   </servlet-mapping>
   
   
