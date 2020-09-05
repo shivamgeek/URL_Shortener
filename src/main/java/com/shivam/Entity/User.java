@@ -1,10 +1,15 @@
 package com.shivam.Entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -31,6 +36,24 @@ public class User {
 	@Column(name="num_urls")
 	private int numUrls;
 	
+	@OneToMany(mappedBy="user", fetch=FetchType.LAZY)
+	List<URL> urlList;
+	
+	public void addURL(URL url) {
+		if(urlList == null) {
+			urlList = new ArrayList<URL>();
+		}
+		urlList.add(url);
+	}
+	
+	public List<URL> getUrlList() {
+		return urlList;
+	}
+
+	public void setUrlList(List<URL> urlList) {
+		this.urlList = urlList;
+	}
+
 	public User() {
 		
 	}
@@ -86,7 +109,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", numUrls=" + numUrls + "]";
+				+ ", password=" + password + ", numUrls=" + numUrls + ", urlList=" + urlList + "]";
 	}
 	
 	
