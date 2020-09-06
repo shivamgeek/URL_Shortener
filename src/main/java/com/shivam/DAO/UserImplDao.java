@@ -24,7 +24,7 @@ public class UserImplDao implements UserDao {
 
 	public void deleteUser(int id) {
 		Session session = mySessionFactory.getCurrentSession();
-		Query<User> q = session.createQuery("delete from User where id=:id",User.class);
+		Query<User> q = session.createQuery("delete from User where id=:id");
 		q.setParameter("id", id);
 		q.executeUpdate();
 

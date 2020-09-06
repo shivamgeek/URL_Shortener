@@ -37,7 +37,7 @@ public class User {
 	@Column(name="num_urls")
 	private int numUrls;
 	
-	@OneToMany(mappedBy="user", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="user", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	List<URL> urlList;
 	
 	public void addURL(URL url) {
