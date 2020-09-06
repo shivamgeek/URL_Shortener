@@ -17,4 +17,6 @@ public interface UserService {
 
 	public List<URL> getUserUrls(int id);
 	
+	public User doLogin(String email, String password);
+	
 }

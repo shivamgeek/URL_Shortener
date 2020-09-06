@@ -17,4 +17,6 @@ public interface UserDao {
 
 	public List<URL> getUserUrls(int id);
 	
+	public List<User> doLogin(String email, String password);
+	
 }

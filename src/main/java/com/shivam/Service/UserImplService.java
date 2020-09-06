@@ -40,5 +40,14 @@ public class UserImplService implements UserService {
 	public List<URL> getUserUrls(int id) {
 		return userDao.getUserUrls(id);
 	}
+	
+	@Transactional
+	public User doLogin(String email, String password) {
+		List<User> list = userDao.doLogin(email, password);
+		if(list == null || list.size() == 0) {
+			return null;
+		}
+		return list.get(0);
+	}
 
 }

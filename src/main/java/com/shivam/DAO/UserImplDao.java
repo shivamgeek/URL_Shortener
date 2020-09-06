@@ -47,4 +47,13 @@ public class UserImplDao implements UserDao {
 		return u.getUrlList();
 	}
 
+	public List<User> doLogin(String email, String password) {
+		Session session = mySessionFactory.getCurrentSession();
+		Query<User> q = session.createQuery("from User as u where u.email=:email AND u.password=:pass");
+		q.setParameter("email", email);
+		q.setParameter("pass", password);
+		List<User> list = q.getResultList();
+		return list;
+	}
+
 }
