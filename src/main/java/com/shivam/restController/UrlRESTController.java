@@ -30,6 +30,9 @@ public class UrlRESTController {
 	@GetMapping("/urls/{urlid}")
 	public URL getUrl(@PathVariable("urlid") int id) {
 		URL u = urlService.getUrlFromId(id);
+		if(u == null) {
+			throw new ErrorException("NO URL FOUND WITH ID "+id);
+		}
 		return u;
 	}
 	
@@ -42,6 +45,10 @@ public class UrlRESTController {
 	
 	@DeleteMapping("/urls/{urlid}")
 	public String deleteUrl(@PathVariable("urlid") int id) {
+		URL u = urlService.getUrlFromId(id);
+		if(u == null) {
+			throw new ErrorException("NO URL FOUND WITH ID "+id);
+		}
 		urlService.removeUrl(id);
 		return "URL with ID "+id+" deleted";
 	}

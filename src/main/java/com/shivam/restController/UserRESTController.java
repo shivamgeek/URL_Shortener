@@ -30,6 +30,9 @@ public class UserRESTController {
 	@GetMapping("/users/{userid}")
 	public User getUser(@PathVariable("userid") int id) {
 		User u = userService.getUserFromId(id);
+		if(u == null) {
+			throw new ErrorException("NO USER FOUND WITH ID "+id);
+		}
 		return u;
 	}
 	
@@ -42,6 +45,10 @@ public class UserRESTController {
 	
 	@DeleteMapping("/users/{userid}")
 	public String deleteUser(@PathVariable("userid") int id) {
+		User u = userService.getUserFromId(id);
+		if(u == null) {
+			throw new ErrorException("NO USER FOUND WITH ID "+id);
+		}
 		userService.deleteUser(id);
 		return "User with ID "+id+" deleted";
 	}
