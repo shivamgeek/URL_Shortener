@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" isELIgnored="false" %>
     
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
@@ -15,13 +16,16 @@
 <br>
 
 <form action="createShortUrl" method="get">
-	<input type="text" name="originalURL">
+	Enter Original URL here - <input type="text" name="fullUrl" />
+	<input type="hidden" name="userID" value="${userData.id}">
 	<input type="submit" value="Generate URL">
 </form>
 
 <br><br>
 
-<h5>Your Generated URL will come here - ${shortenedURL}</h5>
+<c:if test="${!empty urlData}">
+	<h5> Your generated shortened URL for ${urlData.fullUrl} is ${urlData.shortUrl} </h5>
+</c:if>
 
 <hr><br><br>
 
