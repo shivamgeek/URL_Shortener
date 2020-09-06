@@ -18,9 +18,8 @@
 <hr>
 <br>
 
-<form action="createShortUrl" method="get">
+<form action="${pageContext.request.contextPath}/user/createShortUrl/${userData.id}" method="get">
 	Enter Original URL here - <input type="text" name="fullUrl" />
-	<input type="hidden" name="userID" value="${userData.id}">
 	<input type="submit" value="Generate URL">
 </form>
 
@@ -33,8 +32,7 @@
 <hr><br><br>
 
 <h4>Want to see your previous URLs ? Click below </h4>
-<form action="showUrlList" method="get">
-	<input type="hidden" name="userID" value="${userData.id}">
+<form action="${pageContext.request.contextPath}/user/showUrlList/${userData.id}" method="get">
 	<input type="submit" value="Show me list of URLS">
 </form>
 
@@ -59,7 +57,7 @@
 					<td>${url.shortUrl} </td>
 					<td>
 					<!--  CREATE DELETE LINK -->
-					<c:url var="deleteUrl" value="deleteURL/${url.id}"> </c:url>
+					<c:url var="deleteUrl" value="/user/deleteURL/${userData.id}/${url.id}"> </c:url>
 					
 					<a href="${deleteUrl} "
 					onClick="if(!(confirm('Are you sure, you want to delete this customer ?') )) return false" >

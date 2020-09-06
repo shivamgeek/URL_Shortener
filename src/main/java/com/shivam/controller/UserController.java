@@ -59,8 +59,8 @@ public class UserController {
 	}
 	
 	
-	@GetMapping("/createShortUrl")
-	public String createShortenedURL(Model model, @RequestParam("userID") int userID, @RequestParam("fullUrl") String originalUrl) {
+	@GetMapping("/createShortUrl/{userID}")
+	public String createShortenedURL(Model model, @PathVariable("userID") int userID, @RequestParam("fullUrl") String originalUrl) {
 		User user = userService.getUserFromId(userID);
 		System.out.println("User is "+user);
 		System.out.println("Full URL is "+originalUrl);
@@ -79,8 +79,8 @@ public class UserController {
 		return "user_homepage";
 	}
 	
-	@GetMapping("/showUrlList")
-	public String showUserUrlList(Model model, @RequestParam("userID") int userID) {
+	@GetMapping("/showUrlList/{userID}")
+	public String showUserUrlList(Model model, @PathVariable("userID") int userID) {
 		User user = userService.getUserFromId(userID);
 		List<URL> list = user.getUrlList();
 		model.addAttribute("urlListData",list);
@@ -88,9 +88,13 @@ public class UserController {
 		return "user_homepage";
 	}
 	
-	@GetMapping("/deleteURL/{urlId}")
-	public String deleteURL(@PathVariable("urlId") int urlId) {
+	@GetMapping("/deleteURL/{userId}/{urlId}")
+	public String deleteURL(Model model, @PathVariable("userId") int userId, @PathVariable("urlId") int urlId) {
 		urlService.removeUrl(urlId);
+		User user = userService.getUserFromId(userId);
+		List<URL> list = user.getUrlList();
+		model.addAttribute("urlListData",list);
+		model.addAttribute("userData",user);
 		return "user_homepage";
 	}
 	
