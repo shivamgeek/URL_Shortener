@@ -8,6 +8,6 @@
 
 <hr><br><br>
 
-<a href="${pageContext.request.contextPath}/user/goHome">Go to Homepage</a>
+<a href="${pageContext.request.contextPath}/user/register">Register as new user</a>
 
 </html>
