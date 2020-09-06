@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -50,7 +51,7 @@ public class UserController {
 	@PostMapping("/login")
 	public String login(Model model, @RequestParam("email") String email, @RequestParam("password") String password) {
 		User user = userService.doLogin(email, password);
-		if(user == null) {
+		if(user == null || email==null || password==null) {
 			return "redirect:/user/goHome";
 		}
 		model.addAttribute("userData",user);
@@ -87,6 +88,11 @@ public class UserController {
 		return "user_homepage";
 	}
 	
+	@GetMapping("/deleteURL/{urlId}")
+	public String deleteURL(@PathVariable("urlId") int urlId) {
+		urlService.removeUrl(urlId);
+		return "user_homepage";
+	}
 	
 	
 }

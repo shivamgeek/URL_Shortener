@@ -47,15 +47,28 @@
 		<h5> Your List of URLS are - </h5>
 		<table>
 			<tr>
-			<td>S.no.</td>
-			<td>Full URL</td>
-			<td>Shortened URL</td>
+			<td>  S.no.  </td>
+			<td>  Full URL  </td>
+			<td>  Shortened URL </td>
+			<td>  Action </td>
 			</tr>
 			<c:forEach items="${urlListData}" var="url">
 				<tr>
 					<td>${url.id} </td>
 					<td>${url.fullUrl} </td>
 					<td>${url.shortUrl} </td>
+					<td>
+					<!--  CREATE DELETE LINK -->
+					<c:url var="deleteUrl" value="deleteURL/${url.id}"> </c:url>
+					
+					<a href="${deleteUrl} "
+					onClick="if(!(confirm('Are you sure, you want to delete this customer ?') )) return false" >
+						Delete
+					</a>
+					<%-- <form action="deleteURL/${url.id}" method="post">
+						<input type="submit" value="Delete">
+					</form> --%>
+					</td>
 				</tr>
 			</c:forEach>
 		</table>
