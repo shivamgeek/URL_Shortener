@@ -23,7 +23,7 @@ public class UrlImplDao implements UrlDao {
 
 	public void removeUrl(int id) {
 		Session session = mySessionFactory.getCurrentSession();
-		Query<URL> q = session.createQuery("delete from URL where id=:id",URL.class);
+		Query<URL> q = session.createQuery("delete from URL where id=:id");
 		q.setParameter("id", id);
 		q.executeUpdate();
 	}

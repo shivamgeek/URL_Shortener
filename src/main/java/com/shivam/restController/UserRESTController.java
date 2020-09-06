@@ -16,7 +16,7 @@ import com.shivam.Entity.User;
 import com.shivam.Service.UserService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/user_api")
 public class UserRESTController {
 
 	@Autowired
