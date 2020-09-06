@@ -38,13 +38,14 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public String login(@RequestParam("email") String email, @RequestParam("password") String password) {
+	public String login(Model model, @RequestParam("email") String email, @RequestParam("password") String password) {
 		User user = userService.doLogin(email, password);
 		if(user == null) {
 			return "redirect:/user/goHome";
-		}else {
-			return "user_homepage";
 		}
+		
+		model.addAttribute("userData",user);
+		return "user_homepage";	
 	}
 	
 }
