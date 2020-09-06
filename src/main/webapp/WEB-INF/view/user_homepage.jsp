@@ -12,6 +12,9 @@
 </head>
 <body>
 <h4>Welcome ${userData.firstName} ${userData.lastName} </h4>
+<div style="text-align:right" >
+<a href="${pageContext.request.contextPath}/user/goHome">Logout</a>
+</div>
 <hr>
 <br>
 
@@ -28,6 +31,37 @@
 </c:if>
 
 <hr><br><br>
+
+<h4>Want to see your previous URLs ? Click below </h4>
+<form action="showUrlList" method="get">
+	<input type="hidden" name="userID" value="${userData.id}">
+	<input type="submit" value="Show me list of URLS">
+</form>
+
+<c:if test="${!empty urlListData}">
+	<c:choose>
+		<c:when test="${urlListData.size() <= 0 }">
+			<h5> Nothing to show yet!</h5>
+		</c:when>
+		<c:when test="${urlListData.size() > 0 }">
+		<h5> Your List of URLS are - </h5>
+		<table>
+			<tr>
+			<td>S.no.</td>
+			<td>Full URL</td>
+			<td>Shortened URL</td>
+			</tr>
+			<c:forEach items="${urlListData}" var="url">
+				<tr>
+					<td>${url.id} </td>
+					<td>${url.fullUrl} </td>
+					<td>${url.shortUrl} </td>
+				</tr>
+			</c:forEach>
+		</table>
+		</c:when>
+	</c:choose>
+</c:if>
 
 </body>
 </html>
