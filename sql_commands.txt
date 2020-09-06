@@ -20,3 +20,4 @@ expiration_date datetime default null,
 primary key (id)
 );
 
+alter table url_table add foreign key(user_id) references user_table(id);
