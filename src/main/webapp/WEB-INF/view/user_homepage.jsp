@@ -9,6 +9,11 @@
 <head>
 <meta charset="UTF-8"><br>
 <title>User Homepage</title>
+
+<style>
+	.myError {color:red}
+</style>
+
 </head>
 <body>
 <h4>Welcome ${userData.firstName} ${userData.lastName} </h4>

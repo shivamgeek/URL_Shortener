@@ -8,6 +8,11 @@
 <head>
 <meta charset="UTF-8">
 <title>User Registration Form</title>
+
+<style>
+	.myError {color:red}
+</style>
+
 </head>
 <body>
 
@@ -16,19 +21,19 @@
 			<tbody>
 				<tr>
 					<td>Enter First Name </td>
-					<td><form:input path="firstName" /></td>
+					<td><form:input path="firstName" /> <form:errors path="firstName" cssClass="myError" /> </td>
 				</tr>
 				<tr>
 					<td>Enter Last Name </td>
-					<td><form:input path="lastName" /></td>
+					<td><form:input path="lastName" /><form:errors path="lastName" cssClass="myError" /></td>
 				</tr>
 				<tr>
 					<td>Enter Email </td>
-					<td><form:input path="email" /></td>
+					<td><form:input path="email" /><form:errors path="email" cssClass="myError" /></td>
 				</tr>
 				<tr>
 					<td>Enter Password </td>
-					<td><form:input path="password" /></td>
+					<td><form:input path="password" /><form:errors path="password" cssClass="myError" /></td>
 				</tr>
 				<tr>
 					<td><input type="submit" value="Submit Data" /></td>

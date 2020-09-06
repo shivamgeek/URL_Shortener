@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="url_table")
@@ -18,12 +20,16 @@ public class URL {
 	@Column(name="id")
 	private int id;
 	
+	@NotNull(message="This is a mandatory field")
+	@Size(min=1, message="Enter atleast 1 character")
 	@Column(name="full_url")
 	private String fullUrl;
 	
+	@NotNull(message="This is a mandatory field")
 	@Column(name="short_url")
 	private String shortUrl;
 	
+	@NotNull(message="This is a mandatory field")
 	@Column(name="expiration_date")
 	private String expirationDate;
 	
