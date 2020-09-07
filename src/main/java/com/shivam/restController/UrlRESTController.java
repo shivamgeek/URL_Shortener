@@ -16,7 +16,7 @@ import com.shivam.Entity.URL;
 import com.shivam.Service.UrlService;
 
 @RestController
-@RequestMapping("/url_api")
+@RequestMapping("/api_urls")
 public class UrlRESTController {
 
 	@Autowired
