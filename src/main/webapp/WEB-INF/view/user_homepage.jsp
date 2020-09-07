@@ -24,14 +24,20 @@
 <br>
 
 <form action="${pageContext.request.contextPath}/user/createShortUrl/${userData.id}" method="get">
-	Enter Original URL here - <input type="text" name="fullUrl" />
+	Enter Original URL below <br> <input type="text" name="fullUrl" />
 	<input type="submit" value="Generate URL">
 </form>
+<br>
+(Note- Enter URL without "https://" and with "www". Example - www.xyz.com)
 
 <br><br>
 
 <c:if test="${!empty urlData}">
-	<h5> Your generated shortened URL for ${urlData.fullUrl} is ${urlData.shortUrl} </h5>
+	<h5> Your generated shortened URL for ${urlData.fullUrl} is
+	 <a href="${pageContext.request.contextPath}/url/${urlData.shortUrl}">
+		${urlData.shortUrl}
+	</a> 
+	</h5>
 </c:if>
 
 <hr><br><br>
@@ -59,7 +65,7 @@
 				<tr>
 					<td>${url.id} </td>
 					<td>${url.fullUrl} </td>
-					<td>${url.shortUrl} </td>
+					<td><a href="${pageContext.request.contextPath}/url/${url.shortUrl}">${url.shortUrl}</a></td>
 					<td>
 					<!--  CREATE DELETE LINK -->
 					<c:url var="deleteUrl" value="/user/deleteURL/${userData.id}/${url.id}"> </c:url>

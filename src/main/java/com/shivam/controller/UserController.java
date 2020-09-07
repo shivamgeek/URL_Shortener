@@ -1,6 +1,5 @@
 package com.shivam.controller;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.shivam.Entity.URL;
 import com.shivam.Entity.UrlSeed;
 import com.shivam.Entity.User;
+import com.shivam.Service.UrlMapper;
 import com.shivam.Service.UrlService;
 import com.shivam.Service.UserService;
 
@@ -33,7 +33,7 @@ public class UserController {
 	UrlService urlService;
 	
 	@Autowired
-	HashMap<String, String> globalUrlMapping;
+	UrlMapper globalUrlMapping;
 	
 	@GetMapping("/goHome")
 	public String goHome() {
@@ -94,7 +94,7 @@ public class UserController {
 		seed.setId(1);
 		urlService.saveUrlSeed(seed);
 		
-		globalUrlMapping.put(shortenedUrl, originalUrl);
+		globalUrlMapping.getMyUrlMap().put(shortenedUrl, originalUrl);
 		
 		urlService.saveUrl(url);
 		model.addAttribute("userData",user);

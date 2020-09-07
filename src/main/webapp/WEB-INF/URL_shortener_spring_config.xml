@@ -64,7 +64,11 @@
 	<tx:annotation-driven transaction-manager="myTransactionManager" />
 
 	<!-- Create a Hashmap<shorturl, originalUrl> for mapping the shortUrls to original URLs -->
-	<bean id="globalUrlMapping" class="java.util.HashMap"> </bean>
+	<bean id="globalUrlMapping" class="com.shivam.Service.UrlMapper" init-method="initiailiseMap"> 
+		<property name="myUrlMap" ref="myUrlMap" />
+	</bean>
+	
+	<bean id="myUrlMap" class="java.util.HashMap"></bean>
 
 </beans>
 

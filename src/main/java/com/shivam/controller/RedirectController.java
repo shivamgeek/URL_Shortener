@@ -1,13 +1,12 @@
 package com.shivam.controller;
 
-import java.util.HashMap;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.shivam.Service.UrlMapper;
 import com.shivam.restController.ErrorException;
 
 @Controller
@@ -15,12 +14,12 @@ import com.shivam.restController.ErrorException;
 public class RedirectController {
 	
 	@Autowired
-	HashMap<String, String> globalUrlMapping;
+	UrlMapper globalUrlMapping;
 	
 	@GetMapping("/{shortUrl}")
 	public String redirectShortUrl(@PathVariable("shortUrl") String shortUrl) {
-		if(globalUrlMapping.get(shortUrl) != null) {
-			return "redirect:https://"+globalUrlMapping.get(shortUrl);
+		if(globalUrlMapping.getMyUrlMap().get(shortUrl) != null) {
+			return "redirect:https://"+globalUrlMapping.getMyUrlMap().get(shortUrl);
 		}
 		throw new ErrorException("No Mapping found !!!!");
 	}
