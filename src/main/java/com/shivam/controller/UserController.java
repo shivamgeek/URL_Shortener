@@ -1,5 +1,8 @@
 package com.shivam.controller;
 
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -84,7 +87,12 @@ public class UserController {
 		URL url = new URL();
 		url.setUser(user);
 		url.setFullUrl(originalUrl);
-		url.setExpirationDate("2020-9-06 05:50:01");
+			
+		Calendar cal = Calendar.getInstance();
+		cal.setTimeInMillis(System.currentTimeMillis());
+		cal.add(Calendar.YEAR, 1);
+		Timestamp timestamp = new Timestamp(cal.getTimeInMillis());
+		url.setExpirationDate(timestamp.toString());
 		user.addURL(url);
 		
 		//ADD URL shortening logic here

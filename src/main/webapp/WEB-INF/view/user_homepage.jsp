@@ -60,6 +60,7 @@
 			<td>  S.no.  </td>
 			<td>  Full URL  </td>
 			<td>  Shortened URL </td>
+			<td>  Expiration Date </td>
 			<td>  Action </td>
 			</tr>
 			<c:forEach items="${urlListData}" var="url">
@@ -67,6 +68,7 @@
 					<td>${url.id} </td>
 					<td>${url.fullUrl} </td>
 					<td><a href="${pageContext.request.contextPath}/url/${url.shortUrl}">${url.shortUrl}</a></td>
+					<td>${url.expirationDate} </td>
 					<td>
 					<!--  CREATE DELETE LINK -->
 					<c:url var="deleteUrl" value="/user/deleteURL/${userData.id}/${url.id}"> </c:url>
