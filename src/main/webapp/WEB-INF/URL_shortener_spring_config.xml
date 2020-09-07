@@ -63,6 +63,8 @@
     <!-- Step 4: Enable configuration of transactional behavior based on annotations -->
 	<tx:annotation-driven transaction-manager="myTransactionManager" />
 
+	<!-- Create a Hashmap<shorturl, originalUrl> for mapping the shortUrls to original URLs -->
+	<bean id="globalUrlMapping" class="java.util.HashMap"> </bean>
 
 </beans>
 

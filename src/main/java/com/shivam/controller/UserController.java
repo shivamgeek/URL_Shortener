@@ -1,5 +1,6 @@
 package com.shivam.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -30,6 +31,9 @@ public class UserController {
 	
 	@Autowired
 	UrlService urlService;
+	
+	@Autowired
+	HashMap<String, String> globalUrlMapping;
 	
 	@GetMapping("/goHome")
 	public String goHome() {
@@ -89,6 +93,8 @@ public class UserController {
 		seed.setSeedValue(next_seed);
 		seed.setId(1);
 		urlService.saveUrlSeed(seed);
+		
+		globalUrlMapping.put(shortenedUrl, originalUrl);
 		
 		urlService.saveUrl(url);
 		model.addAttribute("userData",user);
