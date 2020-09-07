@@ -1,8 +1,8 @@
 package com.shivam.controller;
 
 import java.sql.Timestamp;
+
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -97,7 +97,7 @@ public class UserController {
 		
 		//ADD URL shortening logic here
 		UrlSeed seed = urlService.getUrlSeed();
-		String shortenedUrl = generateShortUrl(seed.getSeedValue(), originalUrl);
+		String shortenedUrl = urlService.generateShortUrl(seed.getSeedValue(), originalUrl);
 		url.setShortUrl(shortenedUrl);
 		
 		System.out.println(originalUrl+" converted and saved as "+shortenedUrl);
@@ -134,20 +134,6 @@ public class UserController {
 		model.addAttribute("urlListData",list);
 		model.addAttribute("userData",user);
 		return "user_homepage";
-	}
-	
-	//Take last 3 digits of hashcode of original URL and the 3-digit hashseed and interleave them to form a unique string
-	public String generateShortUrl(String seed, String url) {
-		StringBuilder sb = new StringBuilder();
-		int hash = Math.abs(url.hashCode());
-		if(hash<1000) { hash=hash*1000; }
-		hash = hash%1000;
-		for(int i=0;i<3;i++) {
-			sb = sb.append(hash%10);
-			hash=hash/10;
-			sb = sb.append(seed.charAt(i));
-		}
-		return sb.toString();
 	}
 	
 }

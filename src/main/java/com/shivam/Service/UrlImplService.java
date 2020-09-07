@@ -68,4 +68,18 @@ public class UrlImplService implements UrlService {
 		return new String(arr);
 	}
 	
+	//Take last 3 digits of hashcode of original URL and the 3-digit hashseed and interleave them to form a unique string
+	public String generateShortUrl(String seed, String url) {
+		StringBuilder sb = new StringBuilder();
+		int hash = Math.abs(url.hashCode());
+		if(hash<1000) { hash=hash*1000; }
+		hash = hash%1000;
+		for(int i=0;i<3;i++) {
+			sb = sb.append(hash%10);
+			hash=hash/10;
+			sb = sb.append(seed.charAt(i));
+		}
+		return sb.toString();
+	}
+	
 }

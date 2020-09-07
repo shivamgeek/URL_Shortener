@@ -21,4 +21,6 @@ public interface UrlService {
 	
 	public String generateNextSeed(String str);
 	
+	public String generateShortUrl(String seed, String url);
+	
 }
