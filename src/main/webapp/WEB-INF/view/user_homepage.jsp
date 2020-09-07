@@ -27,6 +27,7 @@
 	Enter Original URL below <br> <input type="text" name="fullUrl" />
 	<input type="submit" value="Generate URL">
 </form>
+<span style="color:red;">${errMsg}</span>
 <br>
 (Note- Enter URL without "https://" and with "www". Example - www.xyz.com)
 

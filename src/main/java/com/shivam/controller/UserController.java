@@ -63,7 +63,8 @@ public class UserController {
 	public String login(Model model, @RequestParam("email") String email, @RequestParam("password") String password) {
 		User user = userService.doLogin(email, password);
 		if(user == null || email==null || password==null) {
-			return "redirect:/user/goHome";
+			model.addAttribute("errMsg","Invalid Username and password");
+			return "homepage";
 		}
 		model.addAttribute("userData",user);
 		return "user_homepage";	
@@ -75,6 +76,11 @@ public class UserController {
 		User user = userService.getUserFromId(userID);
 		System.out.println("User is "+user);
 		System.out.println("Full URL is "+originalUrl);
+		if(originalUrl == null || originalUrl.equals("")) {
+			model.addAttribute("errMsg","Empty URL given");
+			model.addAttribute("userData",user);
+			return "user_homepage";
+		}
 		URL url = new URL();
 		url.setUser(user);
 		url.setFullUrl(originalUrl);
@@ -95,8 +101,9 @@ public class UserController {
 		urlService.saveUrlSeed(seed);
 		
 		globalUrlMapping.getMyUrlMap().put(shortenedUrl, originalUrl);
-		
+	
 		urlService.saveUrl(url);
+		
 		model.addAttribute("userData",user);
 		model.addAttribute("urlData",url);
 		return "user_homepage";
