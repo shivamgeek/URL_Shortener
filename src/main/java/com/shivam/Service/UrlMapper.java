@@ -12,7 +12,7 @@ import com.shivam.Entity.URL;
 public class UrlMapper {
 	
 	@Autowired
-	HashMap<String, String> myUrlMap;
+	HashMap<String, URL> myUrlMap;
 	
 	@Autowired
 	UrlService urlService;
@@ -21,18 +21,18 @@ public class UrlMapper {
 		super();
 	}
 
-	public HashMap<String, String> getMyUrlMap() {
+	public HashMap<String, URL> getMyUrlMap() {
 		return myUrlMap;
 	}
 
-	public void setMyUrlMap(HashMap<String, String> myUrlMap) {
+	public void setMyUrlMap(HashMap<String, URL> myUrlMap) {
 		this.myUrlMap = myUrlMap;
 	}
 
 	public void initiailiseMap() {
 		List<URL> list = urlService.getAllUrls();
 		for(int i=0;i<list.size();i++) {
-			myUrlMap.put(list.get(i).getShortUrl(), list.get(i).getFullUrl());
+			myUrlMap.put(list.get(i).getShortUrl(), list.get(i));
 		}
 	}
 }

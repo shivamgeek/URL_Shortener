@@ -108,7 +108,7 @@ public class UserController {
 		seed.setId(1);
 		urlService.saveUrlSeed(seed);
 		
-		globalUrlMapping.getMyUrlMap().put(shortenedUrl, originalUrl);
+		globalUrlMapping.getMyUrlMap().put(shortenedUrl, url);
 	
 		urlService.saveUrl(url);
 		

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shivam.Entity.URL;
+import com.shivam.Service.UrlMapper;
 import com.shivam.Service.UrlService;
 
 @RestController
@@ -21,6 +22,9 @@ public class UrlRESTController {
 
 	@Autowired
 	UrlService urlService;
+	
+	@Autowired
+	UrlMapper globalUrlMapping;
 	
 	@GetMapping("/urls")
 	public List<URL> getAllUrls(){
@@ -57,6 +61,14 @@ public class UrlRESTController {
 	public URL updateUrl(@RequestBody URL u) {
 		urlService.saveUrl(u);
 		return u;
+	}
+	
+	@GetMapping("/map/{shortUrl}")
+	public URL getUrlMapping(@PathVariable("shortUrl") String shortUrl) {
+		if(globalUrlMapping.getMyUrlMap().get(shortUrl) == null) {
+			throw new ErrorException("NO URL FOUND WITH shortUrl "+shortUrl);
+		}
+		return globalUrlMapping.getMyUrlMap().get(shortUrl);
 	}
 	
 }

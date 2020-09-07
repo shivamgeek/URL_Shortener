@@ -19,7 +19,7 @@ public class RedirectController {
 	@GetMapping("/{shortUrl}")
 	public String redirectShortUrl(@PathVariable("shortUrl") String shortUrl) {
 		if(globalUrlMapping.getMyUrlMap().get(shortUrl) != null) {
-			return "redirect:https://"+globalUrlMapping.getMyUrlMap().get(shortUrl);
+			return "redirect:https://"+globalUrlMapping.getMyUrlMap().get(shortUrl).getFullUrl();
 		}
 		throw new ErrorException("No Mapping found !!!!");
 	}
