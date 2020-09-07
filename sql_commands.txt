@@ -29,5 +29,5 @@ create table url_seed(
     primary key (id)
 );
 
-insert into url_seed(seed_value) values ('AAAAAA');
+insert into url_seed(seed_value) values ('AAA');
 

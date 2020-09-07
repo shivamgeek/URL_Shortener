@@ -79,12 +79,15 @@ public class UserController {
 		
 		//ADD URL shortening logic here
 		UrlSeed seed = urlService.getUrlSeed();
-		url.setShortUrl(seed.getSeedValue());
-		System.out.println("Current seed val is "+ seed.getSeedValue());
+		String shortenedUrl = generateShortUrl(seed.getSeedValue(), originalUrl);
+		url.setShortUrl(shortenedUrl);
+		
+		System.out.println(originalUrl+" converted and saved as "+shortenedUrl);
+		
+		//Update Seed value for next URL
 		String next_seed =  urlService.generateNextSeed(seed.getSeedValue());
 		seed.setSeedValue(next_seed);
 		seed.setId(1);
-		System.out.println("Next seed val is "+ seed.getSeedValue());
 		urlService.saveUrlSeed(seed);
 		
 		urlService.saveUrl(url);
@@ -112,5 +115,18 @@ public class UserController {
 		return "user_homepage";
 	}
 	
+	//Take last 3 digits of hashcode of original URL and the 3-digit hashseed and interleave them to form a unique string
+	public String generateShortUrl(String seed, String url) {
+		StringBuilder sb = new StringBuilder();
+		int hash = Math.abs(url.hashCode());
+		if(hash<1000) { hash=hash*1000; }
+		hash = hash%1000;
+		for(int i=0;i<3;i++) {
+			sb = sb.append(hash%10);
+			hash=hash/10;
+			sb = sb.append(seed.charAt(i));
+		}
+		return sb.toString();
+	}
 	
 }
