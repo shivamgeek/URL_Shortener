@@ -3,6 +3,7 @@ package com.shivam.Service;
 import java.util.List;
 
 import com.shivam.Entity.URL;
+import com.shivam.Entity.UrlSeed;
 
 public interface UrlService {
 	
@@ -13,5 +14,11 @@ public interface UrlService {
 	public URL getUrlFromId(int id);
 	
 	public List<URL> getAllUrls();
+	
+	public UrlSeed getUrlSeed();
+	
+	public void saveUrlSeed(UrlSeed s);
+	
+	public String generateNextSeed(String str);
 	
 }

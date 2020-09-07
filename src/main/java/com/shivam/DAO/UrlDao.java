@@ -3,6 +3,7 @@ package com.shivam.DAO;
 import java.util.List;
 
 import com.shivam.Entity.URL;
+import com.shivam.Entity.UrlSeed;
 
 public interface UrlDao {
 	
@@ -13,5 +14,9 @@ public interface UrlDao {
 	public URL getUrlFromId(int id);
 	
 	public List<URL> getAllUrls();
+	
+	public UrlSeed getUrlSeed();
+	
+	public void saveUrlSeed(UrlSeed s);
 	
 }

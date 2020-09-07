@@ -21,3 +21,13 @@ primary key (id)
 );
 
 alter table url_table add foreign key(user_id) references user_table(id);
+
+
+create table url_seed(
+	id int not null auto_increment,
+	seed_value varchar(6),
+    primary key (id)
+);
+
+insert into url_seed(seed_value) values ('AAAAAA');
+

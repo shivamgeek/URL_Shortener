@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shivam.Entity.URL;
+import com.shivam.Entity.UrlSeed;
 import com.shivam.Entity.User;
 import com.shivam.Service.UrlService;
 import com.shivam.Service.UserService;
@@ -77,7 +78,14 @@ public class UserController {
 		user.addURL(url);
 		
 		//ADD URL shortening logic here
-		url.setShortUrl(url.getFullUrl().hashCode()+"");
+		UrlSeed seed = urlService.getUrlSeed();
+		url.setShortUrl(seed.getSeedValue());
+		System.out.println("Current seed val is "+ seed.getSeedValue());
+		String next_seed =  urlService.generateNextSeed(seed.getSeedValue());
+		seed.setSeedValue(next_seed);
+		seed.setId(1);
+		System.out.println("Next seed val is "+ seed.getSeedValue());
+		urlService.saveUrlSeed(seed);
 		
 		urlService.saveUrl(url);
 		model.addAttribute("userData",user);

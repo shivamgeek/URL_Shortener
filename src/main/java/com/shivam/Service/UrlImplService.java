@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.shivam.DAO.UrlDao;
 import com.shivam.Entity.URL;
+import com.shivam.Entity.UrlSeed;
 
 @Service
 public class UrlImplService implements UrlService {
@@ -35,4 +36,36 @@ public class UrlImplService implements UrlService {
 		return urlDao.getAllUrls();
 	}
 
+	@Transactional
+	public UrlSeed getUrlSeed() {
+		return urlDao.getUrlSeed();
+	}
+
+	@Transactional
+	public void saveUrlSeed(UrlSeed s) {
+		urlDao.saveUrlSeed(s);
+	}
+
+	public String generateNextSeed(String str) {
+		char arr[] = str.toCharArray();
+		
+		int i=arr.length-1;
+		
+		for(;i>=0;i--) {
+			char x = arr[i];
+			if(x == 'Z') {
+				continue;
+			}else {
+				arr[i] = (char) ((char)arr[i]+1);
+				break;
+			}
+		}
+		i++;
+		for(;i<arr.length;i++) {
+			arr[i] = 'A';
+		}
+		
+		return new String(arr);
+	}
+	
 }

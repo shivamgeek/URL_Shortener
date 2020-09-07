@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.shivam.Entity.URL;
+import com.shivam.Entity.UrlSeed;
 
 @Repository
 public class UrlImplDao implements UrlDao {
@@ -40,4 +41,14 @@ public class UrlImplDao implements UrlDao {
 		return list;
 	}
 
+	public UrlSeed getUrlSeed() {
+		Session session = mySessionFactory.getCurrentSession();
+		List<UrlSeed> seeds = session.createQuery("from UrlSeed",UrlSeed.class).list();
+		return seeds.get(0);
+	}
+
+	public void saveUrlSeed(UrlSeed s) {
+		Session session = mySessionFactory.getCurrentSession();
+		session.saveOrUpdate(s);
+	}
 }
